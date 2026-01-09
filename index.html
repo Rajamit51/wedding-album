@@ -1,15 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Wedding Album</title>
+<meta charset="UTF-8">
+<title>Amit ❤️ Neha | Wedding Album</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{
+  margin:0;
+  background:black;
+  color:white;
+  overflow:hidden;
+  font-family:serif;
+}
+
+.slide{
+  display:none;
+}
+
+.slide img{
+  width:100%;
+  height:100vh;
+  object-fit:cover;
+}
+
+.active{
+  display:block;
+}
+
+.text{
+  position:fixed;
+  bottom:15px;
+  width:100%;
+  text-align:center;
+  background:rgba(0,0,0,0.4);
+  padding:10px;
+  font-size:22px;
+}
+</style>
 </head>
-<body style="text-align:center;font-family:serif;">
 
-<h1>💍 Wedding Album 💍</h1>
-<p>Amit & Neha</p>
+<body onclick="nextSlide()">
 
-<p>Page live hai 🎉</p>
+<audio id="music" loop>
+  <source src="music.mp3">
+</audio>
+
+<div class="slide active">
+  <img src="1.jpg">
+</div>
+
+<div class="slide">
+  <img src="2.jpg">
+</div>
+
+<div class="slide">
+  <img src="3.jpg">
+</div>
+
+<div class="text">
+  💍 Amit & Neha 💍 <br>
+  Tap anywhere
+</div>
+
+<script>
+let slides = document.querySelectorAll(".slide");
+let index = 0;
+let played = false;
+
+function nextSlide(){
+  slides[index].classList.remove("active");
+  index = (index + 1) % slides.length;
+  slides[index].classList.add("active");
+
+  if(!played){
+    document.getElementById("music").play();
+    played = true;
+  }
+}
+</script>
 
 </body>
 </html>
